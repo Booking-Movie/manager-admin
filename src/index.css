@@ -1,0 +1,179 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  h1 {
+    @apply font-semibold text-2xl;
+  }
+  h2 {
+    @apply font-medium text-lg;
+  }
+
+  table {
+    @apply flex flex-col lg:table lg:bg-white;
+    @apply rounded-lg border-collapse;
+    @apply w-full;
+  }
+
+  thead tr {
+    @apply text-left text-white hidden lg:table-row bg-black;
+    @apply rounded-lg;
+  }
+
+  thead tr th {
+    @apply p-6;
+  }
+
+  thead tr th:first-child {
+    @apply lg:rounded-l-lg;
+  }
+
+  thead tr th:last-child {
+    @apply lg:rounded-r-lg;
+  }
+
+  tbody tr {
+    @apply flex flex-col gap-2 lg:table-row sm:mb-4 md:mb-4;
+  }
+
+  tbody tr:nth-child(odd) {
+    @apply lg:border-b-2 lg:border-t-2 !important;
+  }
+
+  tbody tr td {
+    @apply lg:p-5 gap-5;
+  }
+
+  tbody tr td:first-child {
+    @apply lg:rounded-l-lg;
+  }
+
+  tbody tr td:last-child {
+    @apply lg:rounded-r-lg;
+  }
+
+  .user-card td {
+    @apply flex justify-between lg:table-cell xl:table-cell;
+  }
+
+  .user-card td:last-child {
+    @apply mt-4 lg:mt-0;
+  }
+
+  td span {
+    @apply lg:hidden block;
+  }
+  .avatar-cell {
+    @apply self-center lg:self-start;
+  }
+  /* .body-container {
+    @apply p-6;
+  } */
+}
+@layer utilities {
+  .form-container {
+    @apply md:px-[10%] lg:px-[25%];
+  }
+  .below-navigation-bar {
+    @apply mt-[112px] lg:mt-36;
+  }
+}
+
+@layer components {
+  .modal-container {
+    @apply fixed inset-x-0 bg-white rounded-lg p-6 z-50;
+    /* Center fixed el */
+    @apply top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2;
+    @apply sm:w-[calc(100%-48px)] md:w-[calc(84%-48px)] lg:w-[calc(52%-48px)];
+  }
+  .signin-container {
+    @apply fixed inset-x-0 bg-white rounded-3xl p-6 z-50;
+    /* Center fixed el */
+    @apply top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2;
+    @apply sm:w-[calc(100%-48px)] md:w-[calc(84%-48px)] lg:w-[calc(30%-48px)];
+  }
+  .signup-container {
+    @apply absolute bg-white rounded-3xl p-6 z-50;
+    @apply top-1/2 left-1/2 -translate-x-1/2 -translate-y-[45%] sm:-translate-y-[39%] md:-translate-y-[47%];
+    @apply sm:w-[calc(100%-48px)] md:w-[calc(84%-48px)] lg:w-[calc(52%-48px)];
+  }
+  .modal-content {
+    @apply flex flex-col;
+    @apply max-h-[75vh] overflow-y-auto;
+  }
+  .modal-header {
+    @apply relative;
+    @apply flex flex-col;
+    @apply min-h-[32px];
+  }
+  .modal-bg {
+    @apply fixed inset-0 bg-slate-400 opacity-50 z-50;
+  }
+  .btn-primary {
+    @apply px-7 py-4 bg-[#2A45CB] text-white hover:text-white hover:bg-[#1F3398] rounded-lg font-semibold transition-all;
+  }
+  .btn-delete {
+    @apply px-7 py-4 bg-[#FB2347] text-white hover:bg-[#D90429] rounded-lg font-semibold transition-all;
+  }
+  .user-card {
+    @apply bg-white rounded-lg p-6 lg:p-0 shadow-md lg:shadow-none;
+  }
+  .avatar-cell {
+    @apply self-center lg:self-start;
+  }
+  .modal__button-close {
+    @apply absolute top-[8px] right-[8px];
+
+    @apply h-auto rounded-lg items-start !important;
+
+    @apply p-2;
+  }
+  .bg-image {
+    @apply bg-[url('../movie-login.jpg')];
+  }
+  .pagination {
+    @apply flex flex-wrap bg-white;
+    @apply font-semibold;
+  }
+
+  .pagination li {
+    @apply py-4 rounded-lg;
+  }
+
+  .pagination li a {
+    @apply py-4 px-6 rounded-lg;
+  }
+
+  .pagination li:hover {
+    @apply shadow-md;
+  }
+
+  .pagination li.selected {
+    @apply bg-black text-white;
+  }
+
+  .pagination li.disabled {
+    @apply text-slate-500;
+  }
+  .pagination li.disabled:hover {
+    @apply shadow-none;
+  }
+  .pagination li.disabled a:hover {
+    @apply cursor-default;
+  }
+  .label-warning {
+    @apply px-2 py-1 text-orange-400 bg-orange-100 rounded-[4px];
+  }
+
+  .label-success {
+    @apply px-2 py-1 text-[#34D399] bg-[#CCF4E5] rounded-[4px];
+  }
+
+  .label-error {
+    @apply px-2 py-1 text-[#FB7185] bg-[#FEDBE0] rounded-[4px];
+  }
+  .btn-disabled {
+    @apply px-4 py-2 bg-[#E3E3E3] text-[#C6C6C6] rounded-lg font-semibold;
+  }
+}
