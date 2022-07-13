@@ -15,7 +15,7 @@ const UserList = (props) => {
                     <table>
                         <thead>
                             <tr>
-                                <th >Avartar</th>
+                                <th >Avatar</th>
                                 <th >Username</th>
                                 <th >Email</th>
                                 <th >Phone</th>

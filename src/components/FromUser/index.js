@@ -349,7 +349,7 @@ export const EditUserModal = (props) => {
         address: userEdit.fullname,
         email: userEdit.email,
         phone: userEdit.phone,
-        role: userEdit.role,
+        role: userEdit.role_name,
         avatar: userEdit.avatar
     })
     const dispatch = useDispatch()
@@ -431,9 +431,9 @@ export const EditUserModal = (props) => {
                     <div className="flex flex-col gap-2">
                         <Label size="text-normal">Role</Label>
                         <Select name="role" value={form.role} onChange={handleChange}>
-                            {/* <option defaultValue={'disabled'} >
+                            <option defaultValue={'disabled'} >
                                 {'Select user role'}
-                            </option> */}
+                            </option>
                             <option value="Admin">Admin</option>
                             <option value="User">User</option></Select>
                     </div>

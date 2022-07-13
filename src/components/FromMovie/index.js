@@ -501,7 +501,7 @@ export const CreateMovieForCinema = (props) => {
                         className="btn-primary self-start sm:self-stretch lg:self-start"
                     >
                         <Icon.UserPlus size={32} className="hover:text-white " />
-                        <span className='text-base font-semibold'>Create Movie Cinema</span>
+                        <span className='text-base font-semibold'>Create Actor And Directer</span>
                     </Button>
                 </div>
             </form>

@@ -113,21 +113,21 @@ const Header = () => {
                     )}
                 </div>
                 <ul className={`flex flex-col gap-y-6 p-4 absolute top-[103px] right-0 bg-white lg:items-center text-subtitle font-semibold shadow-shadowbox lg:shadow-none  ${openProfileMenu ? 'block' : 'hidden'}`}>
+                    <NavLink to='profile' className=" flex items-center gap-x-6 w-full">
+                        <div ><Icon.User size={32} color="black" /></div>
+                        <div>
+                            <h1 className='text-lg sm:text-base text-black lg:transition-all'>Profile</h1>
+                        </div>
+                        <div className="ml-auto">
+                            <Icon.ChevronRight size={16} color="black" />
+                        </div>
+                    </NavLink>
                     <NavLink to='/' className=" flex items-center gap-x-6">
                         <div ><Icon.LogOut size={32} color="black" /></div>
                         <div>
                             <button onClick={() => {
                                 dispatch(signOut())
                             }}> <h1 className='text-lg sm:text-base'>Log out</h1></button>
-                        </div>
-                        <div className="ml-auto">
-                            <Icon.ChevronRight size={16} color="black" />
-                        </div>
-                    </NavLink>
-                    <NavLink to='profile' className=" flex items-center gap-x-6 w-full">
-                        <div ><Icon.User size={32} color="black" /></div>
-                        <div>
-                            <h1 className='text-lg sm:text-base text-black lg:transition-all'>Profile</h1>
                         </div>
                         <div className="ml-auto">
                             <Icon.ChevronRight size={16} color="black" />

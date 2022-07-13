@@ -58,25 +58,29 @@ const MovieCard = (props) => {
             </td>
             <td>
                 <div className="flex flex-1 lg:flex-col xl:flex-row flex-wrap justify-center md:justify-between lg:justify-start gap-4 md:gap-x-4 lg:gap-4 items-center">
-                    <Button icon onClick={handleShowAddShowTimeMovieModal} className="btn-primary sm:self-stretch">
-                        <Icon.Clock size={16} className="hover:text-white" />
-                        Create Time
-                    </Button>
-                    {showAddShowTimeMovieModal && (
-                        <Modal onCancel={handleCloseAddShowTimeMovieModal} headerText={`Create Show Time Movie`}>
-                            <CreateShowTimeModal movie={movie} />
-                        </Modal>
-                    )}
-                    <Button icon onClick={handleShowCreateMovieCinemaModal} className="btn-primary">
-                        <Icon.Film size={16} className="hover:text-white" />
-                        Create Movie Cinema
-                    </Button>
-                    {showCreateMovieCinemaModal && (
-                        <Modal onCancel={handleCreateMovieCinemaModal} headerText={`Create Movie For Cinema`}>
-                            <CreateMovieForCinema movie={movie} />
-                        </Modal>
-                    )}
-                    <div className='flex flex-1 flex-wrap items-center sm:justify-between lg:gap-4 md:gap-x-4'>
+                    <div>
+                        <Button icon onClick={handleShowAddShowTimeMovieModal} className="btn-primary sm:self-stretch">
+                            <Icon.Clock size={16} className="hover:text-white" />
+                            Create Time
+                        </Button>
+                        {showAddShowTimeMovieModal && (
+                            <Modal onCancel={handleCloseAddShowTimeMovieModal} headerText={`Create Show Time Movie`}>
+                                <CreateShowTimeModal movie={movie} />
+                            </Modal>
+                        )}
+                    </div>
+                    <div>
+                        <Button icon onClick={handleShowCreateMovieCinemaModal} className="btn-primary">
+                            <Icon.Film size={16} className="hover:text-white" />
+                            Create Actor And Director
+                        </Button>
+                        {showCreateMovieCinemaModal && (
+                            <Modal onCancel={handleCreateMovieCinemaModal} headerText={`Create Actor And Director`}>
+                                <CreateMovieForCinema movie={movie} />
+                            </Modal>
+                        )}
+                    </div>
+                    <div >
                         <Button icon onClick={handleShowEditMovieModal} className="btn-primary">
                             <Icon.Edit size={16} className="hover:text-white" />
                             Edit
@@ -86,6 +90,9 @@ const MovieCard = (props) => {
                                 <EditMovieModal movie={movie} />
                             </Modal>
                         )}
+
+                    </div>
+                    <div>
                         <Button icon onClick={handleShowDeleteMovieModal} className="btn-delete">
                             <Icon.Trash size={16} className="hover:text-white" />
                             Delete
