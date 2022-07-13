@@ -9,6 +9,7 @@ import { ConfindUserDelete } from '../Comfind';
 
 const UserCard = (props) => {
     const { user } = props
+    console.log("🚀 ~ file: index.js ~ line 12 ~ UserCard ~ user", user)
     const [showEditMovieModal, setShowEditMovieModal] = useState(false);
     const handleShowEditMovieModal = useCallback(() => {
         setShowEditMovieModal(!showEditMovieModal);
@@ -51,7 +52,7 @@ const UserCard = (props) => {
                     {user.role_name}
                 </td>
                 <td>
-                    <div className="flex flex-1 flex-wrap justify-betweenlg:justify-start lg:gap-3">
+                    <div className="flex flex-1 flex-wrap justify-between lg:justify-start lg:gap-3">
                         <Button icon onClick={handleShowEditMovieModal} className="btn-primary">
                             <Icon.Edit size={16} className="hover:text-white" />
                             Edit

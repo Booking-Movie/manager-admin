@@ -116,6 +116,9 @@
   .btn-delete {
     @apply px-7 py-4 bg-[#FB2347] text-white hover:bg-[#D90429] rounded-lg font-semibold transition-all;
   }
+  .btn-disabled {
+    @apply px-7 py-4 bg-[#E3E3E3]  text-white  rounded-lg font-semibold transition-all;
+  }
   .user-card {
     @apply bg-white rounded-lg p-6 lg:p-0 shadow-md lg:shadow-none;
   }

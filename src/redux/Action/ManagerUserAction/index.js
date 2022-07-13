@@ -2,12 +2,12 @@ import { managerUserService } from "../../../services/managerUser"
 import { ERROR_SIGNUP, LAY_CHI_TIET_NGUOI_DUNG, LAY_DANH_SACH_NGUOI_DUNG, SET_CHECK_EXITES } from "../ManagerType/auth"
 import { createAction } from "../type"
 
-export const createUser = (formData, callBack) => {
+export const createUser = (formData) => {
     return async dispatch => {
         try {
             const result = await managerUserService.createUser(formData)
             if (result.status === 201) {
-                callBack()
+                window.location.reload()
             }
         } catch (error) {
             console.log(error)

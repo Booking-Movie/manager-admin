@@ -3,16 +3,21 @@ import InputComponent from "../Input"
 import Label from "../Label"
 import Select from "../Select"
 import * as Icon from 'react-feather';
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { actionUserEdit, createUser } from "../../redux/Action/ManagerUserAction";
 import { useHistory } from "react-router-dom";
+import axios from "axios";
 
 
 export const CreateUserModal = () => {
     const dispatch = useDispatch()
     const [img, setImg] = useState('')
     const history = useHistory()
+    const [checkEmail, setCheckEmail] = useState('')
+    console.log("🚀 ~ file: index.js ~ line 18 ~ CreateUserModal ~ checkEmail", checkEmail)
+    const [isFormValidated, setIsFormValidated] = useState(false);
+
     const [form, setForm] = useState({
         username: "",
         password: "",
@@ -47,12 +52,82 @@ export const CreateUserModal = () => {
             [e.target.name]: file
         })
     }
-    const handleChange = (e) => {
+    const checkExist = useCallback((email) => {
+        axios({
+            url: `http://localhost:7000/api/v1/check/email/${email}`,
+            method: 'GET'
+        })
+            .then(res => {
+                const emailRegex =
+                    /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+                const emailRegexCheck = email.match(emailRegex);
+                if (email === '') {
+                    setFormValidation({
+                        ...formValidation,
+                        emailValidation: 'warning',
+                    });
+                } else if (res.data?.length !== 0) {
+                    setFormValidation({
+                        ...formValidation,
+                        emailValidation: 'error-existed',
+                    });
+                } else if (!emailRegexCheck) {
+                    setFormValidation({
+                        ...formValidation,
+                        emailValidation: 'error-format',
+                    });
+                } else if (res.data?.length === 0 && emailRegexCheck) {
+                    setFormValidation({
+                        ...formValidation,
+                        emailValidation: 'success',
+                    });
+                }
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }, [formValidation])
+    const checkExistUsername = useCallback((username) => {
+        axios({
+            url: `http://localhost:7000/api/v1/check/username/${username}`,
+            method: 'GET'
+        })
+            .then(res => {
+                if (res.data?.length !== 0) {
+                    setFormValidation({
+                        ...formValidation,
+                        usernameValidation: 'error-existed',
+                    });
+                } else if (res.data?.length === 0) {
+                    setFormValidation({
+                        ...formValidation,
+                        usernameValidation: 'success',
+                    });
+                }
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }, [formValidation])
+
+    const handleChange = async (e) => {
         e.preventDefault()
         setForm({
             ...form,
             [e.target.name]: e.target.value.trim()
         })
+
+        // Check validation username
+        if (e.target.name === 'username') {
+            if (e.target.value.trim() === '') {
+                setFormValidation({
+                    ...formValidation,
+                    usernameValidation: 'warning',
+                });
+            } else {
+                checkExistUsername(e.target.value.trim())
+            }
+        }
         // Check validation password
         if (e.target.name === 'password') {
             if (e.target.value.trim() === '') {
@@ -94,27 +169,27 @@ export const CreateUserModal = () => {
 
         // Check validation email
         if (e.target.name === 'email') {
-
             if (e.target.value.trim() === '') {
                 setFormValidation({
                     ...formValidation,
                     emailValidation: 'warning',
                 });
             } else {
-                const emailRegex =
-                    /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-                const emailRegexCheck = e.target.value.match(emailRegex);
-                if (!emailRegexCheck) {
-                    setFormValidation({
-                        ...formValidation,
-                        emailValidation: 'error-existed',
-                    });
-                } else if (emailRegexCheck) {
-                    setFormValidation({
-                        ...formValidation,
-                        emailValidation: 'success',
-                    });
-                }
+                checkExist(e.target.value.trim())
+                // const emailRegex =
+                //     /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+                // const emailRegexCheck = e.target.value.match(emailRegex);
+                // if (!emailRegexCheck) {
+                //     setFormValidation({
+                //         ...formValidation,
+                //         emailValidation: 'error-format',
+                //     });
+                // } else if (emailRegexCheck) {
+                //     setFormValidation({
+                //         ...formValidation,
+                //         emailValidation: 'success',
+                //     });
+                // }
             }
         }
         if (e.target.name === 'phone') {
@@ -151,11 +226,20 @@ export const CreateUserModal = () => {
                 formData.append('avatar', form.avatar)
             }
         }
-        dispatch(createUser(formData, goToUser))
+        dispatch(createUser(formData))
     }
-    const goToUser = () => {
-        history.go([0])
-    }
+    useEffect(() => {
+        if (
+            formValidation.usernameValidation === 'success' &&
+            formValidation.passwordValidation === 'success' &&
+            formValidation.emailValidation === 'success'
+        ) {
+            setIsFormValidated(true);
+        } else {
+            setIsFormValidated(false);
+        }
+    }, [formValidation.usernameValidation, formValidation.passwordValidation, formValidation.emailValidation])
+
     return (
         <>
             <form onSubmit={handleSubmit} className="flex flex-col gap-6">
@@ -164,6 +248,16 @@ export const CreateUserModal = () => {
                         <Label size="text-normal" >Username</Label>
                         <InputComponent type="text" name="username" onChange={handleChange} />
                     </div>
+                    {formValidation &&
+                        (formValidation['usernameValidation'] === 'success' ? (
+                            <div className="label-success">This username address is valid.</div>
+                        ) : formValidation['usernameValidation'] === 'warning' ? (
+                            <div className="label-warning">Please input the username.</div>
+                        ) : formValidation['usernameValidation'] === 'error-existed' ? (
+                            <div className="label-error">
+                                This username has been registered in the system. Please try another one.
+                            </div>
+                        ) : null)}
                     <div className="flex flex-col gap-2">
                         <Label size="text-normal">Password</Label>
                         <InputComponent type="text" name="password" onChange={handleChange} />
@@ -218,8 +312,8 @@ export const CreateUserModal = () => {
                     ) : null}
                     <div className="flex flex-col gap-2">
                         <Label size="text-normal">Role</Label>
-                        <Select name="role" defaultValue={'disabled'} onChange={handleChange}>
-                            <option disabled value={'disabled'} >
+                        <Select name="role" onChange={handleChange}>
+                            <option defaultValue={'disabled'} >
                                 {'Select user role'}
                             </option>
                             <option value="Admin">Admin</option>
@@ -230,8 +324,8 @@ export const CreateUserModal = () => {
                         <InputComponent type="file" name="avatar" onChange={handleChangeFile} />
                         <img style={{ width: 150, height: 150 }} src={img} />
                     </div>
-                    <Button icon
-                        className="btn-primary self-start sm:self-stretch lg:self-start"
+                    <Button icon disabled={!isFormValidated}
+                        className={`${isFormValidated ? `btn-primary` : `btn-disabled`} self-start sm:self-stretch lg:self-start`}
                     >
                         <Icon.UserPlus size={32} className="hover:text-white " />
                         <span className='text-base font-semibold'>Create New User</span>
@@ -244,12 +338,13 @@ export const CreateUserModal = () => {
 
 export const EditUserModal = (props) => {
     const { userEdit } = props
+    console.log("🚀 ~ file: index.js ~ line 247 ~ EditUserModal ~ userEdit", userEdit)
     const [img, setImg] = useState('')
     const history = useHistory()
     const [form, setForm] = useState({
         id: userEdit.id,
         username: userEdit.username,
-        password: null,
+        password: '',
         fullname: userEdit.fullname,
         address: userEdit.fullname,
         email: userEdit.email,
@@ -278,13 +373,15 @@ export const EditUserModal = (props) => {
             ...form,
             [e.target.name]: e.target.value
         })
+
     }
     const handleSubmit = (e) => {
         e.preventDefault()
-        if (e.target.password === '') {
+        if (e.target.password !== '') {
+            console.log("🚀 ~ file: index.js ~ line 288 ~ handleSubmit ~ form", form)
             setForm({
                 ...form,
-                [e.target.password]: userEdit.password
+                [e.target.password]: form.password
             })
         }
         console.log("🚀 ~ file: index.js ~ line 291 ~ handleSubmit ~ form", form)
@@ -334,6 +431,9 @@ export const EditUserModal = (props) => {
                     <div className="flex flex-col gap-2">
                         <Label size="text-normal">Role</Label>
                         <Select name="role" value={form.role} onChange={handleChange}>
+                            {/* <option defaultValue={'disabled'} >
+                                {'Select user role'}
+                            </option> */}
                             <option value="Admin">Admin</option>
                             <option value="User">User</option></Select>
                     </div>
