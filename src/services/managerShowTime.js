@@ -6,10 +6,8 @@ export class ManagerShowTimeService extends baseService {
         super();
     }
     createShowTime = (form) => {
-        return this.post(`api/v1/showtime`, form)
+        return this.post(`api/v1/showtime/create`, form)
     }
-
-
 }
 
 export const managerShowTimeService = new ManagerShowTimeService()

@@ -9,7 +9,7 @@ export class ManagerActorService extends baseService {
         return this.get(`api/v1/actor`);
     }
     getAllDirector = () => {
-        return this.get(`api/v1/director`);
+        return this.get(`api/v1/actor/director`);
     }
     createActorDirector = (fromActor) => {
         return this.post(`api/v1/actor`, fromActor)

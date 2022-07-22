@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import { Button } from "../Button"
 import InputComponent from "../Input"
 import Label from "../Label"
@@ -6,17 +7,14 @@ import * as Icon from 'react-feather';
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { createMovie, createShowTimeAction, getAllMoviesAction, updateMovieAction } from "../../redux/Action/ManagerMovieAction";
-import { createMovieCinemaAction, getAllCinemaAction } from "../../redux/Action/ManagerCinemaAction";
+import { createMovie, createShowTimeAction, updateMovieAction } from "../../redux/Action/ManagerMovieAction";
+import { getAllCinemaAction } from "../../redux/Action/ManagerCinemaAction";
 import { createActorDirectorAction, getAllActorAction, getAllDirectorAction } from "../../redux/Action/ManagerActorAction";
 import { MultiSelect } from "react-multi-select-component";
 import { InfoActor } from "../../_core/model/user";
 
 export const CreateMovieModal = () => {
-    const history = useHistory()
     const dispatch = useDispatch()
-    const { actorList, directorList } = useSelector(state => state.ManagerActorReducer)
-    console.log("🚀 ~ file: index.js ~ line 17 ~ CreateMovieModal ~ actorList", actorList, directorList)
     const [from, setFrom] = useState({
         name_movie: "",
         comming_data: "",
@@ -32,7 +30,6 @@ export const CreateMovieModal = () => {
     const [img, setImg] = useState('')
     const handleChangeFile = (e) => {
         let file = e.target.files[0];
-        let fileName = e.target.files[0].name
         if (file.type === 'image/webp' || file.type === 'image/jpeg' || file.type === 'image/gif' || file.type === 'image/png' || file.type === 'image/jpeg') {
             let reader = new FileReader();
             reader.readAsDataURL(file);
@@ -63,11 +60,9 @@ export const CreateMovieModal = () => {
                 fromData.append('movie', from.image_movie)
             }
         }
-        // dispatch(createMovie(fromData, goToMovie))
+        dispatch(createMovie(fromData))
     }
-    const goToMovie = () => {
-        history.go(0)
-    }
+
     useEffect(() => {
         dispatch(getAllActorAction())
         dispatch(getAllDirectorAction())
@@ -145,6 +140,7 @@ export const EditMovieModal = (props) => {
         des_movie: movie.des_movie,
         trailer: movie.trailer,
         nation: movie.nation,
+        time_show: movie.time_show,
         director: movie.director,
         status_movie: movie.status_movie,
         evaluate: movie.evaluate,
@@ -215,6 +211,10 @@ export const EditMovieModal = (props) => {
                         <InputComponent type="text" name="nation" value={form.nation} onChange={handleChange} />
                     </div>
                     <div className="flex flex-col gap-2">
+                        <Label size="text-normal">Time</Label>
+                        <InputComponent type="number" name="time_show" value={form.time_show} onChange={handleChange} />
+                    </div>
+                    <div className="flex flex-col gap-2">
                         <Label size="text-normal">Director</Label>
                         <InputComponent type="text" name="director" value={form.director} onChange={handleChange} />
                     </div>
@@ -249,7 +249,6 @@ export const EditMovieModal = (props) => {
 }
 
 export const CreateShowTimeModal = (props) => {
-    console.log("🚀 ~ file: index.js ~ line 244 ~ CreateShowTimeModal ~ props", props)
     const { movie } = props
     const dispatch = useDispatch()
     const history = useHistory()
@@ -263,7 +262,6 @@ export const CreateShowTimeModal = (props) => {
     })
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log("This is state", state)
         dispatch(createShowTimeAction(state, goMovie))
     }
     const goMovie = () => {
@@ -452,11 +450,8 @@ export const CreateShowTimeModal = (props) => {
 
 
 export const CreateMovieForCinema = (props) => {
-    console.log("🚀 ~ file: index.js ~ line 454 ~ CreateMovieForCinema ~ props", props.movie.id)
     const dispatch = useDispatch()
-    const history = useHistory()
     const movie_id = props.movie.id
-    console.log("🚀 ~ file: index.js ~ line 458 ~ CreateMovieForCinema ~ movie_id", movie_id)
     const [selectActor, setSelectActor] = useState([])
     const [selectDirector, setSelectDirector] = useState([])
     const { actorList, directorList } = useSelector(state => state.ManagerActorReducer)

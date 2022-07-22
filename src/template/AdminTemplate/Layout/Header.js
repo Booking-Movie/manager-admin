@@ -3,7 +3,6 @@ import { NavLink, useHistory } from 'react-router-dom'
 import * as Icon from 'react-feather';
 import { useDispatch, useSelector } from 'react-redux';
 import { signOut } from '../../../redux/Action/ManagerAuthAction';
-import ManagerAuthReducer from '../../../redux/Reducer/AuthReducer/index'
 import { getDetailUser } from '../../../redux/Action/ManagerUserAction';
 import { isEmptyOrUndefined } from '../../../util/isEmpty';
 // import { history } from '../../../App';
@@ -17,7 +16,6 @@ const Header = () => {
     const userLogin = useSelector(state => {
         if (isEmptyOrUndefined(state.ManagerAuthReducer.userLogin)) {
             history.push('/')
-            history.go(0)
         }
         return state.ManagerAuthReducer.userLogin
     })
@@ -31,10 +29,8 @@ const Header = () => {
             dispatch(getDetailUser(id))
         } else {
             history.push('/')
-            history.go(0)
         }
-    }, [userLogin])
-
+    }, [userLogin, history, dispatch, id])
     return (
         <nav className="flex flex-row fixed justify-between bg-white w-full top-0 text-black p-6 shadow-shadowbox z-50">
             <div className="flex">

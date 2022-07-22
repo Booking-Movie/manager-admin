@@ -6,22 +6,19 @@ export class ManagerUserService extends baseService {
         super();
     }
     createUser = (formData) => {
-        return this.post(`api/v1/users`, formData);
+        return this.post(`api/v1/users/create-user`, formData);
     };
     getAllUser = () => {
         return this.get(`api/v1/users/find-all-users`);
     };
-    updateAvatar = (file, formData) => {
-        return this.post(`api/v1/users/upload-avatar`, formData);
-    };
     findDetailUser = (id) => {
-        return this.get(`api/v1/users/${id}`);
+        return this.get(`api/v1/users/detail/${id}`);
     };
     editUser = (formData) => {
-        return this.put(`api/v1/users`, formData)
+        return this.put(`api/v1/users/update-user`, formData)
     }
     deleteUser = (id) => {
-        return this.delete(`api/v1/users/${id}`)
+        return this.delete(`api/v1/users/delete-user/${id}`)
     }
     checkEmail = (email) => {
         return this.post(`api/v1/users/${email}`)

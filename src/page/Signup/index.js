@@ -39,7 +39,6 @@ const Signup = () => {
     const [isFormValidated, setIsFormValidated] = useState(false);
     const handleChangeFile = (e) => {
         let file = e.target.files[0];
-        let fileName = e.target.files[0].name
         if (file.type === 'image/webp' || file.type === 'image/jpeg' || file.type === 'image/gif' || file.type === 'image/png' || file.type === 'image/jpeg') {
             let reader = new FileReader();
             reader.readAsDataURL(file);

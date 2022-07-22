@@ -3,12 +3,12 @@ import { GET_ALL_CINEMA } from "../ManagerType/auth"
 import { createAction } from "../type"
 
 
-export const createCinemaAction = (form, callBack) => {
+export const createCinemaAction = (form) => {
     return async dispatch => {
         try {
             const result = await managerCinemaService.createCinema(form)
-            if (result.status === 201) {
-                callBack()
+            if (result.status === 200) {
+                window.location.reload()
             }
         } catch (error) {
             console.log(error)
@@ -29,12 +29,12 @@ export const getAllCinemaAction = () => {
     }
 }
 
-export const updateCinemaAction = (form, callBack) => {
+export const updateCinemaAction = (form) => {
     return async dispatch => {
         try {
             const result = await managerCinemaService.updateCinema(form)
             if (result.status === 200) {
-                callBack()
+                window.location.reload()
             }
         } catch (error) {
             console.log(error)
@@ -42,12 +42,12 @@ export const updateCinemaAction = (form, callBack) => {
     }
 }
 
-export const deleteCinemaAction = (id, callBack) => {
+export const deleteCinemaAction = (id) => {
     return async dispatch => {
         try {
             const result = await managerCinemaService.deleteCinema(id)
             if (result.status === 200) {
-                callBack()
+                window.location.reload()
             }
         } catch (error) {
             console.log(error)

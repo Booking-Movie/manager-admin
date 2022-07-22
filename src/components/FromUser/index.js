@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import { Button } from "../Button"
 import InputComponent from "../Input"
 import Label from "../Label"
@@ -6,16 +7,12 @@ import * as Icon from 'react-feather';
 import { useCallback, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { actionUserEdit, createUser } from "../../redux/Action/ManagerUserAction";
-import { useHistory } from "react-router-dom";
 import axios from "axios";
 
 
 export const CreateUserModal = () => {
     const dispatch = useDispatch()
     const [img, setImg] = useState('')
-    const history = useHistory()
-    const [checkEmail, setCheckEmail] = useState('')
-    console.log("🚀 ~ file: index.js ~ line 18 ~ CreateUserModal ~ checkEmail", checkEmail)
     const [isFormValidated, setIsFormValidated] = useState(false);
 
     const [form, setForm] = useState({
@@ -39,7 +36,6 @@ export const CreateUserModal = () => {
     });
     const handleChangeFile = (e) => {
         let file = e.target.files[0];
-        let fileName = e.target.files[0].name
         if (file.type === 'image/webp' || file.type === 'image/jpeg' || file.type === 'image/gif' || file.type === 'image/png' || file.type === 'image/jpeg') {
             let reader = new FileReader();
             reader.readAsDataURL(file);
@@ -59,6 +55,7 @@ export const CreateUserModal = () => {
         })
             .then(res => {
                 const emailRegex =
+                    // eslint-disable-next-line no-useless-escape
                     /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
                 const emailRegexCheck = email.match(emailRegex);
                 if (email === '') {
@@ -260,7 +257,7 @@ export const CreateUserModal = () => {
                         ) : null)}
                     <div className="flex flex-col gap-2">
                         <Label size="text-normal">Password</Label>
-                        <InputComponent type="text" name="password" onChange={handleChange} />
+                        <InputComponent type="password" name="password" onChange={handleChange} />
                     </div>
                     {formValidation &&
                         (formValidation['passwordValidation'] === 'success' ? (
@@ -338,9 +335,7 @@ export const CreateUserModal = () => {
 
 export const EditUserModal = (props) => {
     const { userEdit } = props
-    console.log("🚀 ~ file: index.js ~ line 247 ~ EditUserModal ~ userEdit", userEdit)
     const [img, setImg] = useState('')
-    const history = useHistory()
     const [form, setForm] = useState({
         id: userEdit.id,
         username: userEdit.username,
@@ -378,13 +373,11 @@ export const EditUserModal = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault()
         if (e.target.password !== '') {
-            console.log("🚀 ~ file: index.js ~ line 288 ~ handleSubmit ~ form", form)
             setForm({
                 ...form,
                 [e.target.password]: form.password
             })
         }
-        console.log("🚀 ~ file: index.js ~ line 291 ~ handleSubmit ~ form", form)
         let formData = new FormData();
         for (let key in form) {
             if (key !== 'avatar') {
@@ -395,10 +388,7 @@ export const EditUserModal = (props) => {
                 }
             }
         }
-        dispatch(actionUserEdit(formData, goToUser))
-    }
-    const goToUser = () => {
-        history.go([0])
+        dispatch(actionUserEdit(formData))
     }
     return (
         <>

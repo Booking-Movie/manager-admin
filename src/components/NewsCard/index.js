@@ -4,9 +4,9 @@ import * as Icon from 'react-feather';
 import Modal from "../Modal";
 import { EditNews } from "../FromNews";
 import { ConfirmNewDelete } from "../Comfind";
+
 const NewCard = (props) => {
     const { news } = props
-    console.log("🚀 ~ file: index.js ~ line 8 ~ NewCard ~ news", news)
     const [showEditNewModal, setShowEditNewModal] = useState(false);
     const handleShowEditNewModal = useCallback(() => {
         setShowEditNewModal(!showEditNewModal);

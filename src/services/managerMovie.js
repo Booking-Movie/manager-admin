@@ -6,16 +6,16 @@ export class ManagerMovieService extends baseService {
         super();
     }
     getAllMovies = () => {
-        return this.get(`api/v1/movie-cinema`);
+        return this.get(`api/v1/movie/find-all-movie`);
     };
     createMovie = (movie) => {
-        return this.post(`api/v1/movie`, movie)
+        return this.post(`api/v1/movie/create-movie`, movie)
     }
     updateMovie = (form) => {
-        return this.put(`api/v1/movie`, form)
+        return this.put(`api/v1/movie/update-movie`, form)
     }
     deleteMovie = (id) => {
-        return this.delete(`api/v1/movie/${id}`)
+        return this.delete(`api/v1/movie/delete-movie/${id}`)
     }
 
 }

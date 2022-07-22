@@ -1,13 +1,18 @@
 import { managerUserService } from "../../../services/managerUser"
-import { ERROR_SIGNUP, LAY_CHI_TIET_NGUOI_DUNG, LAY_DANH_SACH_NGUOI_DUNG, SET_CHECK_EXITES } from "../ManagerType/auth"
+import { notifyToast } from "../../../util/toast"
+import { ERROR_SIGNUP, LAY_CHI_TIET_NGUOI_DUNG, LAY_DANH_SACH_NGUOI_DUNG } from "../ManagerType/auth"
 import { createAction } from "../type"
 
 export const createUser = (formData) => {
     return async dispatch => {
         try {
             const result = await managerUserService.createUser(formData)
+            await notifyToast(
+                `Creating new user with username ${result.data.newUser.username}.`,
+                `Username ${result.data.newUser.username} has been created.`
+            );
             if (result.status === 201) {
-                window.location.reload()
+                await window.location.reload()
             }
         } catch (error) {
             console.log(error)
@@ -15,12 +20,16 @@ export const createUser = (formData) => {
     }
 }
 
-export const actionUserEdit = (formData, callBack) => {
+export const actionUserEdit = (formData) => {
     return async dispatch => {
         try {
             const result = await managerUserService.editUser(formData)
+            await notifyToast(
+                `Update user with username ${result.data.username}.`,
+                `Username ${result.data.username} has been updated.`
+            );
             if (result.status === 200) {
-                callBack()
+                await window.location.reload()
             }
         } catch (error) {
             console.log(error)
@@ -36,15 +45,6 @@ export const getAllUser = () => {
                 type: LAY_DANH_SACH_NGUOI_DUNG,
                 payload: result.data
             })
-        } catch (error) {
-            console.log(error)
-        }
-    }
-}
-export const uploadAvatar = (file, formData) => {
-    return async dispatch => {
-        try {
-            const result = await managerUserService.updateAvatar(file, formData)
         } catch (error) {
             console.log(error)
         }
@@ -81,8 +81,13 @@ export const actionDeleteUser = (id, callBack) => {
     return async dispatch => {
         try {
             const result = await managerUserService.deleteUser(id)
+
+            await notifyToast(
+                `Delete user with username ${result.data.username}.`,
+                `Username ${result.data.username} has been delete.`
+            );
             if (result.status === 200) {
-                callBack()
+                await window.location.reload()
             }
         } catch (error) {
             console.log(error)

@@ -41,7 +41,7 @@ export const CreateCinemaModal = () => {
                 formData.append('cinema', form.image)
             }
         }
-        dispatch(createCinemaAction(formData, goToUser))
+        dispatch(createCinemaAction(formData))
     }
     const handleChange = (e) => {
         e.preventDefault()
@@ -51,9 +51,6 @@ export const CreateCinemaModal = () => {
         })
     }
 
-    const goToUser = () => {
-        history.go([0])
-    }
     return (
         <>
             <form onSubmit={handleSubmit} className="flex flex-col gap-6">

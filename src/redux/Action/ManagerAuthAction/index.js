@@ -10,12 +10,12 @@ export const signIn = (formData, callBack) => {
         try {
             const result = await managerAuthService.signIn(formData)
             if (result.status === 200) {
-                dispatch(createAction(DANG_NHAP_ACTION, result.data))
                 if (result?.data?.payload?.role !== "Admin") {
                     alert("Unauthorized")
-                    return <Redirect to="/" />
+                    return <Redirect to={{ pathname: '/' }} />
                 } else {
-                    callBack()
+                    await dispatch(createAction(DANG_NHAP_ACTION, result.data))
+                    return callBack()
                 }
             }
         } catch (error) {
@@ -37,10 +37,11 @@ export const signUp = (formData, callBack) => {
     }
 }
 
-export const signOut = () => {
+export const signOut = (callBack) => {
     return dispatch => {
         dispatch({
             type: REMOVE_USER
         })
+        callBack()
     }
 }

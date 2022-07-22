@@ -1,17 +1,16 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
-import * as Icon from 'react-feather';
 import Label from "../../components/Label";
 import InputComponent from "../../components/Input";
 import { Button } from '../../components/Button';
-import { NavLink, useHistory } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { NavLink, Redirect, useHistory } from 'react-router-dom';
+import { useCallback, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { signIn } from '../../redux/Action/ManagerAuthAction';
-import { history } from '../../App';
-import ManagerAuthReducer from '../../redux/Reducer/AuthReducer/index'
 import { TOKEN, USER_LOGIN } from '../../util/setting/config';
 
 const Signin = () => {
+    const { userLogin } = useSelector(state => state.ManagerAuthReducer)
+    console.log("🚀 ~ file: index.js ~ line 13 ~ Signin ~ userLogin", userLogin)
     const [formData, setFromData] = useState({
         username: '',
         password: ''
@@ -34,20 +33,21 @@ const Signin = () => {
         const action = await dispatch(signIn(formData, goToDashboard))
         if (action.toString().includes('401')) {
             setHasError({ error: "401" })
+            history.push('/')
         } else if (action.toString().includes('403')) {
             setHasError({ error: "403" })
         }
-
     }
 
-    const goToDashboard = () => {
-        history.push("dashboard")
-    }
+    const goToDashboard = useCallback(() => {
+        history.push('dashboard')
+    }, [history])
+
     useEffect(() => {
         if (localStorage.getItem(TOKEN) && localStorage.getItem(USER_LOGIN)) {
             goToDashboard()
         }
-    }, [])
+    }, [goToDashboard])
     return (
         <>
             <div className="bg-hero-img bg-cover bg-center bg-no-repeat w-[100vw] h-[100vh] relative z-0 blur" />
@@ -75,7 +75,7 @@ const Signin = () => {
                         </Button>
                     </div>
                 </form>
-                <p className='text-center'>Don't have an account?<span className='font-semibold text-slate-500 hover:text-black'> <NavLink to="/signup">Register now</NavLink></span></p>
+                {/* <p className='text-center'>Don't have an account?<span className='font-semibold text-slate-500 hover:text-black'> <NavLink to="/signup">Register now</NavLink></span></p> */}
             </div>
         </>
     )

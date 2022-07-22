@@ -1,4 +1,3 @@
-import { useCallback, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { deleteNewAction } from "../../redux/Action/ManagerActionNew";
@@ -9,17 +8,13 @@ import { Button } from "../Button";
 
 export const ConfindUserDelete = (props) => {
     const { userDelete } = props
-    console.log("🚀 ~ file: index.js ~ line 11 ~ ConfindUserDelete ~ userDelete", userDelete)
     const history = useHistory()
 
     const dispatch = useDispatch()
     const handleDelete = () => {
-        dispatch(actionDeleteUser(userDelete.id, goToUser))
+        dispatch(actionDeleteUser(userDelete.id))
     }
-    const goToUser = () => {
-        history.go([0])
-    }
-    const cancal = () => {
+    const cancel = () => {
         history.go([0])
     }
     return (
@@ -32,7 +27,7 @@ export const ConfindUserDelete = (props) => {
                     <Button onClick={handleDelete} className="btn-delete w-full">
                         Delete it
                     </Button>
-                    <Button onClick={cancal} className="btn-primary w-full">
+                    <Button onClick={cancel} className="btn-primary w-full">
                         Cancel
                     </Button>
                 </div>
@@ -110,7 +105,6 @@ export const ConfirmMovieDelete = (props) => {
 
 export const ConfirmNewDelete = (props) => {
     const { newDelete } = props
-    console.log("🚀 ~ file: index.js ~ line 113 ~ ConfirmNewDelete ~ newDelete", newDelete)
     const history = useHistory()
     const dispatch = useDispatch()
 

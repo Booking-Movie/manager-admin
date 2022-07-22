@@ -12,10 +12,10 @@ export class ManagerCinemaService extends baseService {
         return this.get(`api/v1/cinema/find-all-cinema`);
     };
     updateCinema = (form) => {
-        return this.put(`api/v1/cinema/edit-cinema`, form)
+        return this.put(`api/v1/cinema/update-cinema`, form)
     }
     deleteCinema = (id) => {
-        return this.delete(`api/v1/cinema/${id}`)
+        return this.delete(`api/v1/cinema/delete-cinema/${id}`)
     }
     createMovieCinema = (form) => {
         return this.post(`api/v1/movie-cinema`, form)

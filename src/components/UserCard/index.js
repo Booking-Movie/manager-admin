@@ -9,7 +9,6 @@ import { ConfindUserDelete } from '../Comfind';
 
 const UserCard = (props) => {
     const { user } = props
-    console.log("🚀 ~ file: index.js ~ line 12 ~ UserCard ~ user", user)
     const [showEditMovieModal, setShowEditMovieModal] = useState(false);
     const handleShowEditMovieModal = useCallback(() => {
         setShowEditMovieModal(!showEditMovieModal);

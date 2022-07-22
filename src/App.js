@@ -18,7 +18,7 @@ export const history = createBrowserHistory()
 
 function App() {
   return (
-    <Router history={history}>
+    < Router history={history} >
       <Switch>
         <Route path="/" exact component={Signin} />
         <Route path="/signup" exact component={Signup} />
@@ -29,7 +29,7 @@ function App() {
         <AdminTemPlate path="/cinema" exact Component={Cinema} />
         <AdminTemPlate path="/news" exact Component={ManagerNews} />
       </Switch>
-    </Router>
+    </ Router>
   );
 }
 

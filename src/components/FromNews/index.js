@@ -111,7 +111,6 @@ export const CreateNews = () => {
 
 export const EditNews = (props) => {
     const { newInfo } = props
-    console.log("🚀 ~ file: index.js ~ line 113 ~ EditNews ~ newInfo", newInfo)
     const [img, setImg] = useState('')
     const dispatch = useDispatch()
     const userLogin = useSelector(state => state.ManagerAuthReducer.userLogin)
@@ -149,7 +148,6 @@ export const EditNews = (props) => {
     }
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log("This is form changed", from)
         let formData = new FormData();
         for (let key in from) {
             if (key !== "new_image") {
