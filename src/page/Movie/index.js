@@ -22,7 +22,8 @@ const Movie = () => {
     const [currentItems, setCurrentItems] = useState([]);
     const [pageCount, setPageCount] = useState(0);
     const [itemOffset, setItemOffset] = useState(0);
-    const { movieList } = useSelector(state => state.ManagerMovieReducer)
+    const { movieList, movieComming } = useSelector(state => state.ManagerMovieReducer)
+    console.log("🚀 ~ file: index.js ~ line 26 ~ Movie ~ movieComming", movieComming)
     const handlePageClick = (event) => {
         const newOffset = (event.selected * limit) % movieList.length;
         setItemOffset(newOffset);

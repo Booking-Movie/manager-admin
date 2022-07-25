@@ -17,9 +17,6 @@ export class ManagerCinemaService extends baseService {
     deleteCinema = (id) => {
         return this.delete(`api/v1/cinema/delete-cinema/${id}`)
     }
-    createMovieCinema = (form) => {
-        return this.post(`api/v1/movie-cinema`, form)
-    }
 }
 
 export const managerCinemaService = new ManagerCinemaService()

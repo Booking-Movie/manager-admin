@@ -3,13 +3,9 @@ import InputComponent from "../../components/Input";
 import Label from "../../components/Label";
 import * as Icon from 'react-feather';
 import { useEffect, useState } from "react";
-// import { checkEmailExist, getAllUser } from "../../redux/Action/ManagerUserAction";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useHistory } from 'react-router-dom';
-import { history } from '../../App';
 import { signUp } from "../../redux/Action/ManagerAuthAction";
-import { checkEmailExist } from "../../redux/Action/ManagerUserAction";
-// import ManagerAuthReducer from '../../redux/Reducer/AuthReducer/index'
 
 const Signup = () => {
     const dispatch = useDispatch()
