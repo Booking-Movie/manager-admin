@@ -5,7 +5,7 @@ const NewsList = (props) => {
     return (
         <div className="flex flex-col gap-6">
             <div>
-                <p className="text-body font-semi-bold">List of news</p>
+                <p className="text-base font-semibold">List of news</p>
             </div>
             <div className="lg:p-6 lg:shadow-sm ">
                 <table>

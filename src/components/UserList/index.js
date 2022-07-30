@@ -9,7 +9,7 @@ const UserList = (props) => {
         <>
             <div className="flex flex-col gap-6">
                 <div>
-                    <p className="text-body font-semi-bold">List of users</p>
+                    <p className="text-base font-semibold">List of users</p>
                 </div>
                 <div className="lg:p-6 lg:shadow-sm">
                     <table>

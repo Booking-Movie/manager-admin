@@ -9,8 +9,6 @@ import { signIn } from '../../redux/Action/ManagerAuthAction';
 import { TOKEN, USER_LOGIN } from '../../util/setting/config';
 
 const Signin = () => {
-    const { userLogin } = useSelector(state => state.ManagerAuthReducer)
-    console.log("🚀 ~ file: index.js ~ line 13 ~ Signin ~ userLogin", userLogin)
     const [formData, setFromData] = useState({
         username: '',
         password: ''
@@ -50,7 +48,7 @@ const Signin = () => {
     }, [goToDashboard])
     return (
         <>
-            <div className="bg-hero-img bg-cover bg-center bg-no-repeat w-[100vw] h-[100vh] relative z-0 blur" />
+            <div className="bg-hero-img container-bg_login" />
             <div className='signin-container flex flex-col gap-y-8'>
                 <div className='flex flex-col gap-4 items-center'>
                     <img src='/images/ImageMoive.png' alt='Logo Image' />

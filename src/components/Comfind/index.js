@@ -6,22 +6,20 @@ import { deleteMovieAction } from "../../redux/Action/ManagerMovieAction";
 import { actionDeleteUser } from "../../redux/Action/ManagerUserAction";
 import { Button } from "../Button";
 
-export const ConfindUserDelete = (props) => {
+export const ConfirmUserDelete = (props) => {
     const { userDelete } = props
-    const history = useHistory()
-
     const dispatch = useDispatch()
     const handleDelete = () => {
         dispatch(actionDeleteUser(userDelete.id))
     }
     const cancel = () => {
-        history.go([0])
+        window.location.reload()
     }
     return (
         <>
             <div className="flex flex-col gap-6 justify-center">
                 <p>
-                    Are you sure you want to delete this movie <span className="font-semi-bold">@{userDelete.username}</span>?
+                    Are you sure you want to delete this movie <span className="font-semibold">@{userDelete.username}</span>?
                 </p>
                 <div className="flex flex-row flex-auto gap-6 relative overflow-hidden">
                     <Button onClick={handleDelete} className="btn-delete w-full">
@@ -36,31 +34,26 @@ export const ConfindUserDelete = (props) => {
     )
 }
 
-export const ConfindCinemaDelete = (props) => {
+export const ConfirmCinemaDelete = (props) => {
     const { cinemaId } = props
-    const history = useHistory()
-
     const dispatch = useDispatch()
     const handleDelete = () => {
-        dispatch(deleteCinemaAction(cinemaId.id, goToUser))
+        dispatch(deleteCinemaAction(cinemaId.id))
     }
-    const goToUser = () => {
-        history.go([0])
-    }
-    const cancal = () => {
-        history.go([0])
+    const cancel = () => {
+        window.location.reload()
     }
     return (
         <>
             <div className="flex flex-col gap-6 justify-center">
                 <p>
-                    Are you sure you want to delete this movie <span className="font-semibold">@{cinemaId.name}</span>?
+                    Are you sure you want to delete this cinema <span className="font-semibold">@{cinemaId.name_cinema}</span>?
                 </p>
                 <div className="flex flex-row flex-auto gap-6 relative overflow-hidden">
                     <Button onClick={handleDelete} className="btn-delete w-full">
                         Delete it
                     </Button>
-                    <Button onClick={cancal} className="btn-primary w-full">
+                    <Button onClick={cancel} className="btn-primary w-full">
                         Cancel
                     </Button>
                 </div>
@@ -71,17 +64,13 @@ export const ConfindCinemaDelete = (props) => {
 
 export const ConfirmMovieDelete = (props) => {
     const { movie } = props
-    const history = useHistory()
     const dispatch = useDispatch()
 
     const handleDelete = () => {
-        dispatch(deleteMovieAction(movie.id, goToMovie))
-    }
-    const goToMovie = () => {
-        history.go(0)
+        dispatch(deleteMovieAction(movie.id))
     }
     const cancel = () => {
-        history.go(0)
+        window.location.reload()
     }
     return (
         <>
@@ -105,14 +94,13 @@ export const ConfirmMovieDelete = (props) => {
 
 export const ConfirmNewDelete = (props) => {
     const { newDelete } = props
-    const history = useHistory()
     const dispatch = useDispatch()
 
     const handleDelete = () => {
         dispatch(deleteNewAction(newDelete.new_id))
     }
     const cancel = () => {
-        history.go(0)
+        window.location.reload()
     }
     return (
         <>

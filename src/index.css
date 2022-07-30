@@ -34,7 +34,7 @@
   }
 
   tbody tr {
-    @apply flex flex-col gap-2 lg:table-row sm:mb-4 md:mb-4;
+    @apply flex flex-col gap-4 lg:table-row sm:mb-4 md:mb-4;
   }
 
   tbody tr:nth-child(odd) {
@@ -81,27 +81,49 @@
 }
 
 @layer components {
+  .header-nav {
+    @apply flex flex-row fixed justify-between bg-white w-full top-0 text-black p-6 shadow-shadowbox z-50;
+  }
+  .navbar-ul_title {
+    @apply flex lg:flex-row flex-col sm:space-y-9 md:space-y-9 lg:space-x-6 mr-auto absolute top-[103px];
+    @apply left-0 lg:static p-6 bg-white text-sm font-semibold lg:items-center z-0 lg:py-0;
+    @apply shadow-shadowbox lg:shadow-none;
+  }
+  .navbar-ul_title h1 {
+    @apply text-lg sm:text-base lg:text-gray-600 lg:hover:text-black lg:transition-all;
+  }
+  .navbar-ul_profile h1 {
+    @apply text-lg sm:text-base text-black lg:transition-all;
+  }
+  .navbar-ul_profile {
+    @apply flex flex-col p-5 absolute top-[103px] space-y-9  right-0 bg-white w-[15%];
+    @apply lg:items-center text-sm font-semibold shadow-shadowbox lg:shadow-none sm:w-[70%] md:w-[30%];
+  }
   .modal-container {
     @apply fixed inset-x-0 bg-white rounded-lg p-6 z-50;
     /* Center fixed el */
     @apply top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2;
     @apply sm:w-[calc(100%-48px)] md:w-[calc(84%-48px)] lg:w-[calc(52%-48px)];
   }
+
   .signin-container {
     @apply fixed inset-x-0 bg-white rounded-3xl p-6 z-50;
     /* Center fixed el */
     @apply top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2;
     @apply sm:w-[calc(100%-48px)] md:w-[calc(84%-48px)] lg:w-[calc(30%-48px)];
   }
+
   .signup-container {
     @apply absolute bg-white rounded-3xl p-6 z-50;
     @apply top-1/2 left-1/2 -translate-x-1/2 -translate-y-[45%] sm:-translate-y-[39%] md:-translate-y-[47%];
     @apply sm:w-[calc(100%-48px)] md:w-[calc(84%-48px)] lg:w-[calc(52%-48px)];
   }
+
   .modal-content {
     @apply flex flex-col;
     @apply max-h-[75vh] overflow-y-auto;
   }
+
   .modal-header {
     @apply relative;
     @apply flex flex-col;
@@ -119,6 +141,33 @@
   .btn-disabled {
     @apply px-7 py-4 bg-[#E3E3E3]  text-white  rounded-lg font-semibold transition-all;
   }
+  .btn-profile {
+    @apply flex flex-row gap-x-3 items-center;
+  }
+  .btn-profile span {
+    @apply text-lg sm:text-base font-semibold;
+  }
+  .search {
+    @apply flex items-center gap-x-2 relative lg:w-[600px] sm:w-full;
+  }
+  .search_icon {
+    @apply absolute z-[10] top-[50%] translate-y-[-50%] left-5;
+  }
+  .container-table {
+    @apply flex flex-col gap-6 lg:flex-row lg:justify-between items-center;
+  }
+  .container-table_title {
+    @apply font-semibold text-black text-3xl;
+  }
+  .container-action {
+    @apply flex flex-1 flex-wrap justify-between lg:justify-start lg:gap-3;
+  }
+  .container-action_movie {
+    @apply flex flex-1 lg:flex-col xl:flex-row flex-wrap justify-center md:justify-between lg:justify-start gap-4 md:gap-x-4 lg:gap-4 items-center;
+  }
+  .container-bg_login {
+    @apply bg-cover bg-center bg-no-repeat w-[100vw] h-[100vh] relative z-0 blur;
+  }
   .user-card {
     @apply bg-white rounded-lg p-6 lg:p-0 shadow-md lg:shadow-none;
   }
@@ -127,9 +176,7 @@
   }
   .modal__button-close {
     @apply absolute top-[8px] right-[8px];
-
     @apply h-auto rounded-lg items-start !important;
-
     @apply p-2;
   }
   .bg-image {
@@ -178,5 +225,8 @@
   }
   .btn-disabled {
     @apply px-4 py-2 bg-[#E3E3E3] text-[#C6C6C6] rounded-lg font-semibold;
+  }
+  .input-search {
+    @apply relative flex-auto min-w-0 block w-full rounded-xl px-3 py-[13px] pl-[50px] text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-black focus:border-2 focus:outline-none;
   }
 }

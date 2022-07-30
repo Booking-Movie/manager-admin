@@ -3,12 +3,11 @@ import * as Icon from 'react-feather';
 import { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Modal from "../../components/Modal";
-import { CreateNewModal } from "../../components/FromMovie";
 import NewsList from "../../components/NewsList";
-import { CreateNews } from "../../components/FromNews";
 import { getAllNewAction } from "../../redux/Action/ManagerActionNew";
 import { scrollToElementByClassName } from "../../util/scrollAnimate";
 import Pagination from '../../components/Panigation';
+import { CreateNewModal } from "../../components/FromNews";
 
 const ManagerNews = () => {
     const dispatch = useDispatch()
@@ -44,8 +43,8 @@ const ManagerNews = () => {
     }, [dispatch])
     return (
         <div className="p-6 flex flex-col gap-6 below-navigation-bar">
-            <div className="flex flex-col gap-6 lg:flex-row lg:justify-between items-center">
-                <h1 className="font-semibold text-black text-3xl">News Manager List</h1>
+            <div className="container-table">
+                <h1 className="container-table_title">News Manager List</h1>
                 <Button icon onClick={handleShowCreateNewModal}
                     className="btn-primary self-start sm:self-stretch"
                 >
@@ -54,7 +53,7 @@ const ManagerNews = () => {
                 </Button>
                 {showCreateNewModal && (
                     <Modal onCancel={handleCloseCreateNewModal} headerText={`Create New Info`}>
-                        <CreateNews />
+                        <CreateNewModal />
                     </Modal>
                 )}
             </div>

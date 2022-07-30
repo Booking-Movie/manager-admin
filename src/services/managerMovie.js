@@ -17,6 +17,9 @@ export class ManagerMovieService extends baseService {
     deleteMovie = (id) => {
         return this.delete(`api/v1/movie/delete-movie/${id}`)
     }
+    getSearchMovie = term => {
+        return this.get(`api/v1/search/${term}`)
+    }
 
 }
 

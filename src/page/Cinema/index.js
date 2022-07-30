@@ -48,9 +48,9 @@ const Cinema = () => {
 
     return (
         <>
-            <div className="p-6 flex flex-col gap-6 below-navigation-bar ">
-                <div className="flex flex-col gap-6 lg:flex-row lg:justify-between items-center">
-                    <h1 className="font-semibold text-black text-3xl">Cinema Manager List</h1>
+            <div className="p-6 flex flex-col gap-6 below-navigation-bar">
+                <div className="container-table">
+                    <h1 className="container-table_title">Cinema Manager List</h1>
                     <Button icon onClick={handleShowCreateUserModal}
                         className="btn-primary self-start sm:self-stretch"
                     >

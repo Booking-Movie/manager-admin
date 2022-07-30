@@ -7,7 +7,7 @@ const CinemaList = (props) => {
         <>
             <div className="flex flex-col gap-6">
                 <div>
-                    <p className="text-body font-semi-bold">List of cinema</p>
+                    <p className="text-base font-semibold">List of cinema</p>
                 </div>
                 <div className="lg:p-6 lg:shadow-sm">
                     <table>

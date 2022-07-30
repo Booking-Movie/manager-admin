@@ -3,7 +3,7 @@ import { Button } from "../Button";
 import * as Icon from 'react-feather';
 import Modal from "../Modal";
 import { EditCinemaModal } from "../CinemaForm";
-import { ConfindCinemaDelete } from "../Comfind";
+import { ConfirmCinemaDelete } from "../Comfind";
 
 const CinemaCard = (props) => {
     const { cinema } = props
@@ -39,13 +39,13 @@ const CinemaCard = (props) => {
                     {cinema.address}
                 </td>
                 <td>
-                    <div className="flex flex-1 flex-wrap justify-between lg:justify-start  lg:gap-3">
+                    <div className="container-action">
                         <Button icon onClick={handleShowEditMovieModal} className="btn-primary">
                             <Icon.Edit size={16} className="hover:text-white" />
                             Edit
                         </Button>
                         {showEditMovieModal && (
-                            <Modal onCancel={handleCloseEditMovieModal} headerText={`Edit Movie`}>
+                            <Modal onCancel={handleCloseEditMovieModal} headerText={`Edit Cinema @${cinema.name_cinema}`}>
                                 <EditCinemaModal cinemaProps={cinema} />
                             </Modal>
                         )}
@@ -54,8 +54,8 @@ const CinemaCard = (props) => {
                             Delete
                         </Button>
                         {showDeleteMovieModal && (
-                            <Modal onCancel={handleCloseDeleteMovieModal} headerText={`Delete movie`}>
-                                <ConfindCinemaDelete cinemaId={cinema} />
+                            <Modal onCancel={handleCloseDeleteMovieModal} headerText={`Delete movie @${cinema.name_cinema}`}>
+                                <ConfirmCinemaDelete cinemaId={cinema} />
                             </Modal>
                         )}
                     </div>

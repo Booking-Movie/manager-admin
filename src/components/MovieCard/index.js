@@ -57,14 +57,14 @@ const MovieCard = (props) => {
                 {movie.des_movie.length > 50 ? movie.des_movie.substr(0, 50) + '...' : movie.des_movie}
             </td>
             <td>
-                <div className="flex flex-1 lg:flex-col xl:flex-row flex-wrap justify-center md:justify-between lg:justify-start gap-4 md:gap-x-4 lg:gap-4 items-center">
+                <div className="container-action_movie">
                     <div>
                         <Button icon onClick={handleShowAddShowTimeMovieModal} className="btn-primary sm:self-stretch">
                             <Icon.Clock size={16} className="hover:text-white" />
                             Create Time
                         </Button>
                         {showAddShowTimeMovieModal && (
-                            <Modal onCancel={handleCloseAddShowTimeMovieModal} headerText={`Create Show Time Movie`}>
+                            <Modal onCancel={handleCloseAddShowTimeMovieModal} headerText={`Create Show Time Movie For @${movie.name_movie}`}>
                                 <CreateShowTimeModal movie={movie} />
                             </Modal>
                         )}
@@ -75,7 +75,7 @@ const MovieCard = (props) => {
                             Create Actor And Director
                         </Button>
                         {showCreateMovieCinemaModal && (
-                            <Modal onCancel={handleCreateMovieCinemaModal} headerText={`Create Actor And Director`}>
+                            <Modal onCancel={handleCreateMovieCinemaModal} headerText={`Create Actor And Director For @${movie.name_movie}`}>
                                 <CreateMovieForCinema movie={movie} />
                             </Modal>
                         )}

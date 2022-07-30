@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { createNewAction, updateNewAction } from "../../redux/Action/ManagerActionNew";
 import TextareaComponent from "../TextArea";
 
-export const CreateNews = () => {
+export const CreateNewModal = () => {
     const [img, setImg] = useState('')
     const dispatch = useDispatch()
     const userLogin = useSelector(state => state.ManagerAuthReducer.userLogin)
@@ -109,7 +109,7 @@ export const CreateNews = () => {
 }
 
 
-export const EditNews = (props) => {
+export const EditNewsModal = (props) => {
     const { newInfo } = props
     const [img, setImg] = useState('')
     const dispatch = useDispatch()
@@ -200,8 +200,8 @@ export const EditNews = (props) => {
                     <Button icon
                         className="btn-primary self-start sm:self-stretch lg:self-start"
                     >
-                        <Icon.UserPlus size={32} className="hover:text-white " />
-                        <span className='text-base font-semibold'>Create New</span>
+                        <Icon.Edit size={32} className="hover:text-white " />
+                        <span className='text-base font-semibold'>Edit New</span>
                     </Button>
                 </div>
             </form>

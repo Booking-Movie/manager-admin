@@ -173,20 +173,6 @@ export const CreateUserModal = () => {
                 });
             } else {
                 checkExist(e.target.value.trim())
-                // const emailRegex =
-                //     /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-                // const emailRegexCheck = e.target.value.match(emailRegex);
-                // if (!emailRegexCheck) {
-                //     setFormValidation({
-                //         ...formValidation,
-                //         emailValidation: 'error-format',
-                //     });
-                // } else if (emailRegexCheck) {
-                //     setFormValidation({
-                //         ...formValidation,
-                //         emailValidation: 'success',
-                //     });
-                // }
             }
         }
         if (e.target.name === 'phone') {

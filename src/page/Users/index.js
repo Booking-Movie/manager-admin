@@ -9,6 +9,8 @@ import UserList from '../../components/UserList';
 import { getAllUser } from '../../redux/Action/ManagerUserAction';
 import { scrollToElementByClassName } from '../../util/scrollAnimate';
 import ManagerAuthReducer from '../../redux/Reducer/AuthReducer/index'
+import axios from 'axios';
+import InputSearch from '../../components/Search';
 
 
 const Users = () => {
@@ -46,11 +48,34 @@ const Users = () => {
     useEffect(() => {
         dispatch(getAllUser())
     }, [dispatch])
-
+    const onSearchSubmit = async term => {
+        const fetchMovie = () => {
+            axios({
+                url: `http://localhost:7000/api/v1/search/search-user/${term}`,
+                method: 'GET'
+            })
+                .then(res => {
+                    setCurrentItems(res.data)
+                })
+                .catch(err => {
+                    console.log(err)
+                })
+        }
+        fetchMovie()
+    }
+    const clearResults = () => {
+        return setCurrentItems(userList)
+    }
     return (
-        <div className="p-6 flex flex-col gap-6 below-navigation-bar ">
-            <div className="flex flex-col gap-6 lg:flex-row lg:justify-between items-center">
-                <h1 className="font-semibold text-black text-3xl">User Manager List</h1>
+        <div className="p-6 flex flex-col gap-6 below-navigation-bar">
+            <div className="search">
+                <div className="search_icon">
+                    <Icon.Search size={16} color="gray" />
+                </div>
+                <InputSearch onSearchSubmit={term => onSearchSubmit(term)} clearResults={clearResults} searchName=" Search by collection, user" />
+            </div>
+            <div className="container-table">
+                <h1 className="container-table_title">User Manager List</h1>
                 <Button icon onClick={handleShowCreateUserModal}
                     className="btn-primary self-start sm:self-stretch"
                 >
@@ -58,7 +83,7 @@ const Users = () => {
                     <span className='text-base font-semibold'>Create New User</span>
                 </Button>
                 {showCreateUserModal && (
-                    <Modal onCancel={handleCloseCreateMovieModal} headerText={`Create New Movie`}>
+                    <Modal onCancel={handleCloseCreateMovieModal} headerText={`Create New User Account`}>
                         <CreateUserModal />
                     </Modal>
                 )}

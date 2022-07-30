@@ -349,9 +349,7 @@ export const CreateMovieForCinema = (props) => {
     const dispatch = useDispatch()
     const movie_id = props.movie.id
     const [selectActor, setSelectActor] = useState([])
-    console.log("🚀 ~ file: index.js ~ line 446 ~ CreateMovieForCinema ~ selectActor", selectActor)
     const [selectDirector, setSelectDirector] = useState([])
-    console.log("🚀 ~ file: index.js ~ line 448 ~ CreateMovieForCinema ~ selectDirector", selectDirector)
     const { actorList, directorList } = useSelector(state => state.ManagerActorReducer)
     useEffect(() => {
         dispatch(getAllActorAction())

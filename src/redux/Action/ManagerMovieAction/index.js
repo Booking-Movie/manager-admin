@@ -1,7 +1,7 @@
 import { managerMovieService } from "../../../services/managerMovie"
 import { managerShowTimeService } from "../../../services/managerShowTime"
 import { notifyToast } from "../../../util/toast"
-import { GET_ALL_MOVIES } from "../ManagerType/movie_type"
+import { GET_ALL_MOVIES, SEARCH_RESULT } from "../ManagerType/movie_type"
 import { createAction } from "../type"
 
 export const getAllMoviesAction = () => {
@@ -60,7 +60,7 @@ export const deleteMovieAction = (id) => {
                 `Movie ${result.data.name} has been delete.`
             );
             if (result.status === 200) {
-                await window.location.reload()
+                window.location.reload()
             }
         } catch (error) {
             console.log(error)
@@ -85,5 +85,14 @@ export const createShowTimeAction = (form) => {
     }
 }
 
-
+export const getAllSearchResult = form => {
+    return async dispatch => {
+        try {
+            const result = await managerMovieService.getSearchMovie(form)
+            dispatch(createAction(SEARCH_RESULT, result.data))
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}
 

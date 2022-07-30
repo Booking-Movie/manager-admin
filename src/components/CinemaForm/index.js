@@ -14,11 +14,9 @@ export const CreateCinemaModal = () => {
         image: {}
     })
     const [img, setImg] = useState()
-    const history = useHistory()
     const dispatch = useDispatch()
     const handleChangeFile = (e) => {
         let file = e.target.files[0];
-        let fileName = e.target.files[0].name
         if (file.type === 'image/webp' || file.type === 'image/jpeg' || file.type === 'image/gif' || file.type === 'image/png' || file.type === 'image/jpeg') {
             let reader = new FileReader();
             reader.readAsDataURL(file);
@@ -79,7 +77,6 @@ export const CreateCinemaModal = () => {
         </>
     )
 }
-
 
 export const EditCinemaModal = (props) => {
     const { cinemaProps } = props
@@ -150,8 +147,8 @@ export const EditCinemaModal = (props) => {
                     <Button icon
                         className="btn-primary self-start sm:self-stretch lg:self-start"
                     >
-                        <Icon.UserPlus size={32} className="hover:text-white " />
-                        <span className='text-base font-semibold'>Create New Cinema</span>
+                        <Icon.Edit size={32} className="hover:text-white " />
+                        <span className='text-base font-semibold'>Edit Cinema</span>
                     </Button>
                 </div>
             </form>

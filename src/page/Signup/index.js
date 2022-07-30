@@ -12,7 +12,6 @@ const Signup = () => {
     const [img, setImg] = useState('')
     const history = useHistory()
     // const { userList } = useSelector(state => state.ManagerAuthReducer)
-    // console.log("🚀 ~ file: index.js ~ line 18 ~ Signup ~ userList", userList[0])
     const [form, setForm] = useState({
         username: "",
         password: "",
