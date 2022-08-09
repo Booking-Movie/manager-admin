@@ -4,10 +4,13 @@
 
 @layer base {
   h1 {
-    @apply font-semibold text-2xl;
+    @apply font-semibold text-heading-4;
   }
   h2 {
-    @apply font-medium text-lg;
+    @apply font-semibold text-heading-5;
+  }
+  h3 {
+    @apply font-medium text-subtitle;
   }
 
   table {
@@ -155,9 +158,6 @@
   }
   .container-table {
     @apply flex flex-col gap-6 lg:flex-row lg:justify-between items-center;
-  }
-  .container-table_title {
-    @apply font-semibold text-black text-3xl;
   }
   .container-action {
     @apply flex flex-1 flex-wrap justify-between lg:justify-start lg:gap-3;

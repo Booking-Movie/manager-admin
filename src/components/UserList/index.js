@@ -1,6 +1,5 @@
 import { memo } from "react"
 import { ClipLoader } from "react-spinners"
-import MovieCard from "../MovieCard"
 import UserCard from "../UserCard"
 
 const UserList = (props) => {
@@ -24,7 +23,7 @@ const UserList = (props) => {
                             </tr>
                         </thead>
                         <tbody className="bg-white text-left">
-                            {userList ? ((userList).map((users, key) => < UserCard key={users.id} user={users} />)) : (<tr>
+                            {userList ? ((userList).map((users) => < UserCard key={users.id} user={users} />)) : (<tr>
                                 <td rowSpan={7}>
                                     <ClipLoader />
                                 </td>

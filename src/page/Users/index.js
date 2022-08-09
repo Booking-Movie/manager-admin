@@ -8,7 +8,6 @@ import Pagination from '../../components/Panigation';
 import UserList from '../../components/UserList';
 import { getAllUser } from '../../redux/Action/ManagerUserAction';
 import { scrollToElementByClassName } from '../../util/scrollAnimate';
-import ManagerAuthReducer from '../../redux/Reducer/AuthReducer/index'
 import axios from 'axios';
 import InputSearch from '../../components/Search';
 
@@ -64,7 +63,7 @@ const Users = () => {
         fetchMovie()
     }
     const clearResults = () => {
-        return setCurrentItems(userList)
+        return currentItems
     }
     return (
         <div className="p-6 flex flex-col gap-6 below-navigation-bar">

@@ -1,3 +1,4 @@
+/* eslint-disable no-mixed-operators */
 /* eslint-disable jsx-a11y/alt-text */
 import { Button } from "../Button"
 import InputComponent from "../Input"
@@ -31,7 +32,6 @@ export const CreateUserModal = () => {
         fullnameValidation: "",
         emailValidation: "",
         roleValidation: "",
-        departmentValidation: "",
         phoneValidation: ""
     });
     const handleChangeFile = (e) => {

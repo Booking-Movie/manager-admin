@@ -12,8 +12,17 @@ module.exports = {
       },
       backgroundImage: {
         'hero-img': "url('/public/images/movie-login.jpg')"
-      }
-
+      },
+      fontSize: {
+        'heading-1': '3.653rem',
+        'heading-2': '2.887rem',
+        'heading-3': '2.281rem',
+        'heading-4': '1.802rem',
+        'heading-5': '1.424rem',
+        subtitle: '1.125rem',
+        body: '1rem',
+        footer: '0.889rem',
+      },
     },
   },
   plugins: [],

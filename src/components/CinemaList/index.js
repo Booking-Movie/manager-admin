@@ -20,7 +20,7 @@ const CinemaList = (props) => {
                             </tr>
                         </thead>
                         <tbody className="bg-white text-left">
-                            {cinemas ? ((cinemas).map((cinema, key) => < CinemaCard key={cinema.id} cinema={cinema} />)) : (<tr>
+                            {cinemas ? ((cinemas).map((cinema) => < CinemaCard key={cinema.id} cinema={cinema} />)) : (<tr>
                                 <td rowSpan={3}>
                                     <ClipLoader />
                                 </td>

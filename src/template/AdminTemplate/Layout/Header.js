@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { signOut } from '../../../redux/Action/ManagerAuthAction';
 import { getDetailUser } from '../../../redux/Action/ManagerUserAction';
 import { isEmptyOrUndefined } from '../../../util/isEmpty';
-// import { history } from '../../../App';
 
 
 const Header = () => {
