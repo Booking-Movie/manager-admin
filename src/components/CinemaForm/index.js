@@ -122,10 +122,11 @@ export const EditCinemaModal = (props) => {
                 }
             }
         }
+        console.log("🚀 ~ file: index.js ~ line 117 ~ handleSubmit ~ form", form)
         dispatch(updateCinemaAction(formData, goToCinema))
     }
     const goToCinema = () => {
-        history.go([0])
+        window.location.reload()
     }
     return (
         <>

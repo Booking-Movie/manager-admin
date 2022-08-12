@@ -9,7 +9,7 @@ export const getAllMoviesAction = () => {
         try {
             const result = await managerMovieService.getAllMovies()
             if (result.status === 200) {
-                dispatch(createAction(GET_ALL_MOVIES, result.data))
+                dispatch(createAction(GET_ALL_MOVIES, result.data.payload))
             }
         } catch (error) {
             console.log(error)
@@ -26,7 +26,7 @@ export const createMovie = (form) => {
                 `Movie ${result.data.name_movie} has been created.`
             );
             if (result.status === 201) {
-                await window.location.reload()
+                window.location.reload()
             }
         } catch (error) {
             console.log(error)

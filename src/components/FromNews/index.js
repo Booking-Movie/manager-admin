@@ -53,6 +53,7 @@ export const CreateNewModal = () => {
                 formData.append('news', from.new_image)
             }
         }
+        console.log("🚀 ~ file: index.js ~ line 50 ~ handleSubmit ~ from", from)
         dispatch(createNewAction(formData, goNew))
 
     }
@@ -158,6 +159,7 @@ export const EditNewsModal = (props) => {
                 }
             }
         }
+        console.log("🚀 ~ file: index.js ~ line 154 ~ handleSubmit ~ from", from)
         dispatch(updateNewAction(formData))
     }
     return (
