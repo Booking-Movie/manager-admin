@@ -4,7 +4,6 @@ import Label from "../Label"
 import Select from "../Select"
 import * as Icon from 'react-feather';
 import { useState } from "react";
-import { NewInfo } from "../../_core/model/user";
 import { useDispatch, useSelector } from "react-redux";
 import { createNewAction, updateNewAction } from "../../redux/Action/ManagerActionNew";
 import TextareaComponent from "../TextArea";
@@ -53,7 +52,6 @@ export const CreateNewModal = () => {
                 formData.append('news', from.new_image)
             }
         }
-        console.log("🚀 ~ file: index.js ~ line 50 ~ handleSubmit ~ from", from)
         dispatch(createNewAction(formData, goNew))
 
     }
@@ -114,7 +112,6 @@ export const EditNewsModal = (props) => {
     const { newInfo } = props
     const [img, setImg] = useState('')
     const dispatch = useDispatch()
-    const userLogin = useSelector(state => state.ManagerAuthReducer.userLogin)
     const [from, setFrom] = useState({
         new_id: newInfo.new_id,
         new_title: newInfo.new_title,
@@ -159,7 +156,6 @@ export const EditNewsModal = (props) => {
                 }
             }
         }
-        console.log("🚀 ~ file: index.js ~ line 154 ~ handleSubmit ~ from", from)
         dispatch(updateNewAction(formData))
     }
     return (

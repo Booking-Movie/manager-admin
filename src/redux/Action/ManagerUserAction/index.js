@@ -43,7 +43,7 @@ export const getAllUser = () => {
             const result = await managerUserService.getAllUser()
             dispatch({
                 type: LAY_DANH_SACH_NGUOI_DUNG,
-                payload: result.data
+                payload: result.data.payload
             })
         } catch (error) {
             console.log(error)
@@ -56,7 +56,7 @@ export const getDetailUser = (id) => {
             const result = await managerUserService.findDetailUser(id)
             dispatch({
                 type: LAY_CHI_TIET_NGUOI_DUNG,
-                payload: result.data
+                payload: result.data.payload
             })
         } catch (error) {
             console.log(error)

@@ -281,7 +281,6 @@ export const CreateShowTimeModal = (props) => {
     })
     const handleSubmit = (e) => {
         e.preventDefault()
-        // console.log("🚀 ~ file: index.js ~ line 282 ~ CreateShowTimeModal ~ state", state)
         dispatch(createShowTimeAction(state, goMovie))
     }
     const goMovie = () => {
@@ -366,7 +365,6 @@ export const CreateMovieForCinema = (props) => {
         if (selectDirector !== '') {
             fromActor.directorList = selectDirector
         }
-        console.log("🚀 ~ file: index.js ~ line 370 ~ handleSubmit ~ fromActor", fromActor)
         dispatch(createActorDirectorAction(fromActor, goToMovie))
     }
     const goToMovie = () => {

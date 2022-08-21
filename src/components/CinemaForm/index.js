@@ -122,7 +122,6 @@ export const EditCinemaModal = (props) => {
                 }
             }
         }
-        console.log("🚀 ~ file: index.js ~ line 117 ~ handleSubmit ~ form", form)
         dispatch(updateCinemaAction(formData, goToCinema))
     }
     const goToCinema = () => {

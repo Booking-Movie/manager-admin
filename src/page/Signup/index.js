@@ -100,11 +100,8 @@ const Signup = () => {
                     emailValidation: 'warning',
                 });
             } else {
-                // const email = await e.target.value.trim()
                 const emailRegex =
                     /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-                // const emailCheckExistedResult = dispatch(checkEmailExist(email));
-                // console.log("🚀 ~ file: index.js ~ line 112 ~ handleChange ~ emailCheckExistedResult", emailCheckExistedResult)
                 const emailRegexCheck = e.target.value.match(emailRegex);
                 if (!emailRegexCheck) {
                     setFormValidation({

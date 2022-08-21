@@ -21,7 +21,7 @@ export const getAllCinemaAction = () => {
         try {
             const result = await managerCinemaService.getAllCinema()
             if (result.status === 200) {
-                dispatch(createAction(GET_ALL_CINEMA, result.data))
+                dispatch(createAction(GET_ALL_CINEMA, result.data.payload))
             }
         } catch (error) {
             console.log(error)
