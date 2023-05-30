@@ -28,6 +28,7 @@ function App() {
         <AdminTemPlate path="/profile" exact Component={Profile} />
         <AdminTemPlate path="/cinema" exact Component={Cinema} />
         <AdminTemPlate path="/news" exact Component={ManagerNews} />
+        {/* <AdminTemPlate path="/order" exact Component={Order} /> */}
       </Switch>
     </ Router>
   );

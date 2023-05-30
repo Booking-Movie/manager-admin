@@ -19,13 +19,13 @@ const Header = () => {
         }
         return state.ManagerAuthReducer.userLogin
     })
-
     const { id } = userLogin.payload
     const detailUser = useSelector(state => state.ManagerAuthReducer.detailUser)
     const { avatar, username } = detailUser
 
     useEffect(() => {
         setOpenProfileMenu(false)
+        setOpenHamBurgerMenu(false)
         if (userLogin) {
             dispatch(getDetailUser(id))
         } else {
@@ -46,10 +46,10 @@ const Header = () => {
                 )}
             </div>
             <ul
-                className={`navbar-ul_title ${openHamBurgerMenu ? 'block' : 'hidden lg:inline-flex'
+                className={`navbar-ul_title  ${openHamBurgerMenu ? 'block' : 'hidden lg:inline-flex'
                     } `}
             >
-                <NavLink to='/dashboard' className=" flex items-center space-x-6 ">
+                <NavLink to='/dashboard' className=" flex items-center space-x-6 text-center">
                     <div className="lg:hidden"><Icon.Monitor size={32} color="black" /></div>
                     <div className='w-full'>
                         <h1>Dashboad</h1>
@@ -58,7 +58,7 @@ const Header = () => {
                         <Icon.ChevronRight size={16} color="black" />
                     </div>
                 </NavLink>
-                <NavLink to='users' className=" flex items-center space-x-6">
+                <NavLink to='users' className=" flex items-center space-x-6 text-center">
                     <div className="lg:hidden"><Icon.Users size={32} color="black" /></div>
                     <div className='w-full'>
                         <h1>Manager User</h1>
@@ -67,7 +67,7 @@ const Header = () => {
                         <Icon.ChevronRight size={16} color="black" />
                     </div>
                 </NavLink>
-                <NavLink to='movie' className="flex items-center space-x-6">
+                <NavLink to='movie' className="flex items-center space-x-6 text-center">
                     <div className="lg:hidden"><Icon.Film size={32} color="black" /></div>
                     <div className='w-full'>
                         <h1>Manager Movie</h1>
@@ -76,7 +76,7 @@ const Header = () => {
                         <Icon.ChevronRight size={16} color="black" />
                     </div>
                 </NavLink>
-                <NavLink to='cinema' className="flex items-center space-x-6">
+                <NavLink to='cinema' className="flex items-center space-x-6 text-center">
                     <div className="lg:hidden"><Icon.MapPin size={32} color="black" /></div>
                     <div className='w-full'>
                         <h1>Manager Cinema</h1>
@@ -85,7 +85,7 @@ const Header = () => {
                         <Icon.ChevronRight size={16} color="black" />
                     </div>
                 </NavLink>
-                <NavLink to='news' className=" flex items-center space-x-6">
+                <NavLink to='news' className=" flex items-center space-x-6 text-center">
                     <div className="lg:hidden"><Icon.BookOpen size={32} color="black" /></div>
                     <div className='w-full'>
                         <h1>Manager News</h1>
@@ -94,6 +94,15 @@ const Header = () => {
                         <Icon.ChevronRight size={16} color="black" />
                     </div>
                 </NavLink>
+                {/* <NavLink to='order' className=" flex items-center space-x-6 text-center">
+                    <div className="lg:hidden"><Icon.BookOpen size={32} color="black" /></div>
+                    <div className='w-full'>
+                        <h1>Manager Order</h1>
+                    </div>
+                    <div className="lg:hidden ml-auto">
+                        <Icon.ChevronRight size={16} color="black" />
+                    </div>
+                </NavLink> */}
             </ul>
             <div className="flex items-center">
                 <div>

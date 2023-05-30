@@ -20,12 +20,13 @@ const Users = () => {
     const [pageCount, setPageCount] = useState(0);
     const [itemOffset, setItemOffset] = useState(0);
     const userList = useSelector(state => state.ManagerAuthReducer.userList)
-
+    const clearResults = () => {
+        setCurrentItems(userList)
+    }
     const handlePageClick = (event) => {
         const newOffset = (event.selected * limit) % userList.length;
         setItemOffset(newOffset);
     };
-
     const handlePaginationClick = () => {
         scrollToElementByClassName('scrollPos');
     };
@@ -47,6 +48,7 @@ const Users = () => {
     useEffect(() => {
         dispatch(getAllUser())
     }, [dispatch])
+
     const onSearchSubmit = async term => {
         const fetchMovie = () => {
             axios({
@@ -62,16 +64,14 @@ const Users = () => {
         }
         fetchMovie()
     }
-    const clearResults = () => {
-        return currentItems
-    }
+
     return (
         <div className="p-6 flex flex-col gap-6 below-navigation-bar">
             <div className="search">
                 <div className="search_icon">
                     <Icon.Search size={16} color="gray" />
                 </div>
-                <InputSearch onSearchSubmit={term => onSearchSubmit(term)} clearResults={clearResults} searchName=" Search by collection, user" />
+                <InputSearch onSearchSubmit={term => onSearchSubmit(term)} clearResults={term => clearResults(term)} searchName=" Search by collection, user" />
             </div>
             <div className="container-table">
                 <h1 className="container-table_title">User Manager List</h1>

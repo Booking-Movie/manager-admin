@@ -1,7 +1,7 @@
 /* eslint-disable no-fallthrough */
-import jwtDecode from "jwt-decode";
+// import jwtDecode from "jwt-decode";
 import { TOKEN, USER_LOGIN } from "../../../util/setting/config";
-import { DANG_NHAP_ACTION, ERROR_SIGNUP, LAY_CHI_TIET_NGUOI_DUNG, LAY_DANH_SACH_NGUOI_DUNG, LAY_DANH_SACH_SIGNUP, REMOVE_USER, SET_CHECK_EXITES, SET_PAGE, SIGNIN_ERROR } from "../../Action/ManagerType/auth";
+import { DANG_NHAP_ACTION, ERROR_SIGNUP, LAY_CHI_TIET_NGUOI_DUNG, LAY_DANH_SACH_NGUOI_DUNG, REMOVE_USER, SIGNIN_ERROR } from "../../Action/ManagerType/auth";
 
 let user = {};
 if (localStorage.getItem(USER_LOGIN)) {
@@ -17,7 +17,6 @@ if (localStorage.getItem(USER_LOGIN)) {
 //         alert("Session expired. Please sign-in again!")
 //     }
 // }
-
 
 const stateDefault = {
     userLogin: user,

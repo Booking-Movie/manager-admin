@@ -12,6 +12,7 @@ export const CreateNewModal = () => {
     const [img, setImg] = useState('')
     const dispatch = useDispatch()
     const userLogin = useSelector(state => state.ManagerAuthReducer.userLogin)
+    console.log("🚀 ~ file: index.js ~ line 15 ~ CreateNewModal ~ userLogin", userLogin.payload.role)
     const [from, setFrom] = useState({
         new_title: "",
         new_introduction: "",

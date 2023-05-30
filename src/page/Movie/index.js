@@ -58,10 +58,10 @@ const Movie = () => {
         fetchMovie()
     }
     const clearResults = () => {
-        return currentItems
+        return setCurrentItems(movieList)
     }
     return (
-        <div className=" flex flex-col gap-6 p-6 below-navigation-bar ">
+        <div className="flex flex-col gap-6 p-6 below-navigation-bar">
             <div className="search">
                 <div className="search_icon">
                     <Icon.Search size={16} color="gray" />

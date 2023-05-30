@@ -21,7 +21,6 @@ export class baseService {
         })
     }
 
-
     get = (url) => {
         return Axios({
             url: `${DOMAIN}/${url}`,

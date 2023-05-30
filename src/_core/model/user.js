@@ -1,7 +1,7 @@
 export class InfoActor {
     movie_id = 0
-    actorList = []
-    directorList = []
+    actor = ''
+    director = ''
     constructor() { }
 }
 

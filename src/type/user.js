@@ -7,3 +7,12 @@ export const ObjectUser = {
     cmnd: "",
     role: ""
 }
+
+export class ObjectCreateCinema {
+    code_theater = ''
+    time_start = ''
+    start_date = ''
+    movie_id = ''
+    cinema_id = []
+    constructor() { }
+}

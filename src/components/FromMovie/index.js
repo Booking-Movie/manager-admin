@@ -12,6 +12,7 @@ import { getAllCinemaAction } from "../../redux/Action/ManagerCinemaAction";
 import { createActorDirectorAction, getAllActorAction, getAllDirectorAction } from "../../redux/Action/ManagerActorAction";
 import { MultiSelect } from "react-multi-select-component";
 import { InfoActor } from "../../_core/model/user";
+import { ObjectCreateCinema } from "../../type/user";
 
 export const CreateMovieModal = () => {
     const dispatch = useDispatch()
@@ -75,10 +76,10 @@ export const CreateMovieModal = () => {
         dispatch(createMovie(fromData))
     }
 
-    useEffect(() => {
-        dispatch(getAllActorAction())
-        dispatch(getAllDirectorAction())
-    }, [])
+    // useEffect(() => {
+    //     dispatch(getAllActorAction())
+    //     dispatch(getAllDirectorAction())
+    // }, [])
     return (
         <>
             <form onSubmit={handleSubmit} className="flex flex-col gap-6">
@@ -272,6 +273,7 @@ export const CreateShowTimeModal = (props) => {
     const dispatch = useDispatch()
     const history = useHistory()
     const { cinemaList } = useSelector(state => state.ManagerCinemaReducer)
+    const [selectCinema, setSelectCinema] = useState([])
     const [state, setState] = useState({
         code_theater: '',
         time_start: '',
@@ -281,7 +283,13 @@ export const CreateShowTimeModal = (props) => {
     })
     const handleSubmit = (e) => {
         e.preventDefault()
-        dispatch(createShowTimeAction(state, goMovie))
+        const formCinema = new ObjectCreateCinema()
+        formCinema.code_theater = state.code_theater
+        formCinema.time_start = state.time_start
+        formCinema.movie_id = movie.id
+        formCinema.start_date = state.start_date
+        formCinema.cinema_id = selectCinema
+        dispatch(createShowTimeAction(formCinema, goMovie))
     }
     const goMovie = () => {
         history.go(0)
@@ -306,7 +314,12 @@ export const CreateShowTimeModal = (props) => {
                     </div>
                     <div className="flex flex-col gap-2">
                         <Label size="text-normal">Select Cinema</Label>
-                        <Select onChange={handleChange} name="cinema_id" placeholder="Select cinema">
+                        <MultiSelect value={selectCinema} onChange={setSelectCinema} options={cinemaList?.map((item) => {
+                            const label = item.name_cinema
+                            const value = item.id
+                            return { label, value }
+                        })} />
+                        {/* <Select onChange={handleChange} name="cinema_id" placeholder="Select cinema">
                             < option defaultValue={'disabled'} >
                                 {'Select cinema'}
                             </option>
@@ -318,7 +331,7 @@ export const CreateShowTimeModal = (props) => {
 
                                 )
                             })}
-                        </Select>
+                        </Select> */}
                     </div>
                     <div className="flex flex-col gap-2">
                         <Label size="text-normal" >Code Theater</Label>
@@ -326,6 +339,7 @@ export const CreateShowTimeModal = (props) => {
                     </div>
                     <div className="flex flex-col gap-2">
                         <Label size="text-normal">Start Date</Label>
+
                         <InputComponent type="date" name="start_date" onChange={handleChange} />
                     </div>
                     <div className="flex flex-col gap-2">
@@ -344,28 +358,30 @@ export const CreateShowTimeModal = (props) => {
     )
 }
 
-
 export const CreateMovieForCinema = (props) => {
     const dispatch = useDispatch()
     const movie_id = props.movie.id
-    const [selectActor, setSelectActor] = useState([])
-    const [selectDirector, setSelectDirector] = useState([])
-    const { actorList, directorList } = useSelector(state => state.ManagerActorReducer)
-    useEffect(() => {
-        dispatch(getAllActorAction())
-        dispatch(getAllDirectorAction())
-    }, [])
+    const [from, setFrom] = useState({
+        actor: "",
+        director: ""
+    })
+
     const handleSubmit = (e) => {
         e.preventDefault()
         const fromActor = new InfoActor()
         fromActor.movie_id = movie_id
-        if (selectActor !== '') {
-            fromActor.actorList = selectActor
-        }
-        if (selectDirector !== '') {
-            fromActor.directorList = selectDirector
-        }
+        fromActor.actor = from.actor
+        fromActor.director = from.director
         dispatch(createActorDirectorAction(fromActor, goToMovie))
+    }
+
+    const handleChange = (e) => {
+
+        e.preventDefault()
+        setFrom({
+            ...from,
+            [e.target.name]: e.target.value
+        })
     }
     const goToMovie = () => {
         window.location.reload()
@@ -378,19 +394,11 @@ export const CreateMovieForCinema = (props) => {
                 <div className="flex flex-col gap-4">
                     <div className="flex flex-col gap-2">
                         <Label size="text-normal">Actor</Label>
-                        <MultiSelect value={selectActor} onChange={setSelectActor} options={actorList.map((item) => {
-                            const label = item.name_actor
-                            const value = item.id
-                            return { label, value }
-                        })} />
+                        <InputComponent type="text" name="actor" onChange={handleChange} />
                     </div>
                     <div className="flex flex-col gap-2">
                         <Label size="text-normal">Director</Label>
-                        <MultiSelect value={selectDirector} onChange={setSelectDirector} options={directorList.map((item) => {
-                            const label = item.name_director
-                            const value = item.id
-                            return { label, value }
-                        })} />
+                        <InputComponent type="text" name="director" onChange={handleChange} />
                     </div>
                     <Button icon
                         className="btn-primary self-start sm:self-stretch lg:self-start"
@@ -403,6 +411,80 @@ export const CreateMovieForCinema = (props) => {
         </>
     )
 }
+
+// export const CreateMovieForCinema = (props) => {
+//     const dispatch = useDispatch()
+//     const movie_id = props.movie.id
+//     const [selectActor, setSelectActor] = useState([])
+//     const [selectDirector, setSelectDirector] = useState([])
+//     // const [data, setData] = useState([{
+//     //     actor: ""
+//     // }])
+//     // console.log("🚀 ~ file: index.js ~ line 356 ~ CreateMovieForCinema ~ data", data)
+//     const { actorList, directorList } = useSelector(state => state.ManagerActorReducer)
+//     useEffect(() => {
+//         dispatch(getAllActorAction())
+//         dispatch(getAllDirectorAction())
+//     }, [])
+//     const handleSubmit = (e) => {
+//         e.preventDefault()
+//         const fromActor = new InfoActor()
+//         fromActor.movie_id = movie_id
+//         if (selectActor !== '') {
+//             fromActor.actorList = selectActor
+//         }
+//         if (selectDirector !== '') {
+//             fromActor.directorList = selectDirector
+//         }
+//         dispatch(createActorDirectorAction(fromActor, goToMovie))
+//     }
+//     const goToMovie = () => {
+//         window.location.reload()
+//     }
+//     // const handleChange = (val, index) => {
+//     //     console.log("🚀 ~ file: index.js ~ line 378 ~ handleChange ~ index", index)
+//     //     let temp = [...data]
+//     //     temp[index] = val.target.value;
+//     //     setData(temp);
+//     //     console.log(temp);
+//     // }
+//     useEffect(() => {
+//     }, [dispatch])
+//     return (
+//         <>
+//             <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+//                 <div className="flex flex-col gap-4">
+//                     <div className="flex flex-col gap-2">
+//                         <Label size="text-normal">Actor</Label>
+//                         {/* {data.map((val, index) => {
+//                             console.log("🚀 ~ file: index.js ~ line 396 ~ {data.map ~ index", index)
+//                             return <InputComponent key={index} type="text" name="actor" value={val.actor} onChange={(val) => handleChange(val, index)} />
+//                         })} */}
+//                         <MultiSelect value={selectActor} onChange={setSelectActor} options={actorList.map((item) => {
+//                             const label = item.name_actor
+//                             const value = item.id
+//                             return { label, value }
+//                         })} />
+//                     </div>
+//                     <div className="flex flex-col gap-2">
+//                         <Label size="text-normal">Director</Label>
+//                         <MultiSelect value={selectDirector} onChange={setSelectDirector} options={directorList.map((item) => {
+//                             const label = item.name_director
+//                             const value = item.id
+//                             return { label, value }
+//                         })} />
+//                     </div>
+//                     <Button icon
+//                         className="btn-primary self-start sm:self-stretch lg:self-start"
+//                     >
+//                         <Icon.UserPlus size={32} className="hover:text-white " />
+//                         <span className='text-base font-semibold'>Create Actor And Directer</span>
+//                     </Button>
+//                 </div>
+//             </form>
+//         </>
+//     )
+// }
 
 
 

@@ -88,8 +88,8 @@
     @apply flex flex-row fixed justify-between bg-white w-full top-0 text-black p-6 shadow-shadowbox z-50;
   }
   .navbar-ul_title {
-    @apply flex lg:flex-row flex-col sm:space-y-9 md:space-y-9 lg:space-x-6 mr-auto absolute top-[103px];
-    @apply left-0 lg:static p-6 bg-white text-sm font-semibold lg:items-center z-0 lg:py-0;
+    @apply flex lg:flex-row flex-col sm:space-y-9 md:space-y-9  mr-auto absolute top-[103px];
+    @apply left-0 lg:static p-6 lg:p-0 bg-white text-sm font-semibold lg:items-center z-0 lg:py-0;
     @apply shadow-shadowbox lg:shadow-none;
   }
   .navbar-ul_title h1 {

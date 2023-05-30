@@ -6,7 +6,7 @@ const InputSearch = ({ onSearchSubmit, clearResults, searchName }) => {
         if (term !== '') {
             onSearchSubmit(term)
         } else {
-            clearResults()
+            clearResults(term)
         }
     }, [term, onSearchSubmit, clearResults])
     return (

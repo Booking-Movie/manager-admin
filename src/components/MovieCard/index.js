@@ -9,6 +9,7 @@ import { CreateMovieForCinema, CreateShowTimeModal, EditMovieModal } from '../Fr
 
 const MovieCard = (props) => {
     const { movie } = props
+    console.log("🚀 ~ file: index.js ~ line 12 ~ MovieCard ~ movie", movie)
     const [showEditMovieModal, setShowEditMovieModal] = useState(false);
     const handleShowEditMovieModal = useCallback(() => {
         setShowEditMovieModal(!showEditMovieModal);
